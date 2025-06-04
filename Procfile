@@ -1,1 +1,0 @@
-web: gunicorn graph_project.wsgi
