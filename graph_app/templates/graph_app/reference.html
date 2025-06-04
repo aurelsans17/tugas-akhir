@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Teori Graf & Penerapannya</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Catamaran:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<style>
+    .nav-link {
+        position: relative;
+        overflow: hidden;
+        padding-bottom: 10px;
+        color: #ffffff;
+        /* agar teks putih juga jika dibutuhkan */
+        transition: color 0.3s ease-in-out;
+    }
+
+    .nav-link::before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        bottom: 0;
+        left: -100%;
+        background-color: white;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .nav-link:hover {
+        color: white;
+    }
+
+    .nav-link:hover::before {
+        left: 0;
+    }
+
+
+    @media (max-width: 639px) {
+        .hide-on-mobile {
+            display: none;
+        }
+    }
+
+    .cormorant-garamond {
+        font-family: "Cormorant Garamond", serif;
+        font-optical-sizing: auto;
+        font-weight: 400;
+        font-style: normal;
+    }
+
+    .proza-libre {
+        font-family: "Proza Libre", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 400;
+        font-style: normal;
+    }
+
+    .montserrat {
+        font-family: "Montserrat", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 900;
+        font-style: normal;
+    }
+
+    .cssbuttons-io-button {
+        background: #bfdbfe;
+        color: #083344;
+        font-family: inherit;
+        padding: 0.35em;
+        padding-left: 1.2em;
+        font-size: 17px;
+        font-weight: 500;
+        border-radius: 0.9em;
+        border: none;
+        letter-spacing: 0.05em;
+        display: flex;
+        align-items: center;
+        box-shadow: inset 0 0 1.6em -0.6em #bfdbfe;
+        overflow: hidden;
+        position: relative;
+        height: 2.8em;
+        padding-right: 3.3em;
+        cursor: pointer;
+    }
+
+    .cssbuttons-io-button .icon {
+        background: white;
+        margin-left: 1em;
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 2.2em;
+        width: 2.2em;
+        border-radius: 0.7em;
+        box-shadow: 0.1em 0.1em 0.6em 0.2em #bfdbfe;
+        right: 0.3em;
+        transition: all 0.3s;
+    }
+
+    .cssbuttons-io-button:hover .icon {
+        width: calc(100% - 0.6em);
+    }
+
+    .cssbuttons-io-button .icon svg {
+        width: 1.1em;
+        transition: transform 0.3s;
+        color: #083344;
+    }
+
+    .cssbuttons-io-button:hover .icon svg {
+        transform: translateX(0.1em);
+    }
+
+    .cssbuttons-io-button:active .icon {
+        transform: scale(0.95);
+    }
+</style>
+
+<body class="min-h-screen">
+
+    <nav class="bg-blue-200 fixed w-full z-20 top-0 start-0 border-b border-gray-200">
+        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+            <a class="flex space-x-3 lg:text-blue-200 text-gray-900 font-semibold rtl:space-x-reverse">Teori Graf &
+                Penerapannya</a>
+
+            <div class="flex  items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+                <button class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg
+                    md:hidden hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-200" type="button"
+                    data-drawer-target="drawer-body-scrolling" data-drawer-show="drawer-body-scrolling"
+                    data-drawer-backdrop="true" aria-controls="drawer-body-scrolling">
+                    <span class="sr-only">Open main menu</span>
+                    <svg class="text-black w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 17 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M1 1h15M1 7h15M1 13h15" />
+                    </svg>
+                </button>
+            </div>
+
+            <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
+                <ul
+                    class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0">
+                    <li class="items-center">
+                        <a href="/" class="nav-link block px-3 text-gray-700" aria-current="page">Beranda</a>
+                    </li>
+                    <li>
+                        <a href="/contoh-penerapan/" class="nav-link block px-3 text-gray-700">Penerapan</a>
+                    </li>
+                    <li>
+                        <a href="/perhitungan-graf-lintasan/" class="nav-link block px-3 text-gray-700">Perhitungan</a>
+                    </li>
+                    <li>
+                        <a href="/sumber-referensi/" class="block px-3 text-white font-semibold">Referensi</a>
+                        <div class="border-t-4 px-8 mt-2" style="border-color: rgb(255, 255, 255);"></div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div id="drawer-body-scrolling"
+        class="fixed top-0 left-0 z-40 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-white w-80"
+        tabindex="-1" aria-labelledby="drawer-body-scrolling-label">
+        <h5 id="drawer-body-scrolling-label" class="text-base font-semibold text-gray-500 uppercase">
+            Menu</h5>
+        <button type="button" data-drawer-hide="drawer-body-scrolling" aria-controls="drawer-body-scrolling" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 absolute top-2.5 end-2.5 
+                    inline-flex items-center justify-center">
+            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+            </svg>
+            <span class="sr-only">Close menu</span>
+        </button>
+        <div class="py-4 overflow-y-auto">
+            <ul class="space-y-2 font-medium">
+                <li>
+                    <a href="/" type="button" class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group 
+                            hover:bg-gray-100">
+                        <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Beranda</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/contoh-penerapan/" type="button" class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group 
+                            hover:bg-gray-100">
+                        <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Penerapan</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/perhitungan-graf-lintasan/" type="button" class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group 
+                            hover:bg-gray-100">
+                        <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Perhitungan</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/sumber-referensi/" type="button"
+                        class="flex items-center w-full p-2 text-base text-gray-900 font-bold rounded-lg group bg-gray-100">
+                        <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Referensi</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <section class="bg-white">
+        <div class="py-12 mt-10 px-4 mx-auto max-w-screen-xl text-center lg:py-16 relative">
+
+            <div class="grid lg:grid-cols-4 gap-6">
+                <div
+                    class="flex flex-col justify-between h-full p-6 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-100">
+                    <div>
+                        <h5 class="mb-2 text-left text-justify text-2xl font-bold tracking-tight text-gray-900">
+                            Dominant local metric dimension of wheel related graphs.
+                        </h5>
+                        <p class="font-normal text-left text-justify text-gray-700">
+                            Umilasari, R., Susilowati, L., & Slamin, N. (2021).
+                        </p>
+                    </div>
+                    <div class="flex items-center justify-center mt-4">
+                        <a href="https://doi.org/10.1088/1757-899x/1115/1/012029" target="_blank"
+                            class="cssbuttons-io-button">
+                            View Reference
+                            <div class="icon">
+                                <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M0 0h24v24H0z" fill="none"></path>
+                                    <path
+                                        d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
+                                        fill="currentColor"></path>
+                                </svg>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div
+                    class="flex flex-col justify-between h-full p-6 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-100">
+                    <div>
+                        <h5 class="mb-2 text-left text-justify text-2xl font-bold tracking-tight text-gray-900">
+                            On the Dominant Local Resolving Set of Vertex Amalgamation Graphs.
+                        </h5>
+                        <p class="font-normal text-left text-justify text-gray-700">
+                            Umilasari, R., Susilowati, L., Slamin, S., & Prabhu, S. (2023).
+                        </p>
+                    </div>
+                    <div class="flex items-center justify-center mt-4">
+                        <a href="https://doi.org/10.18860/ca.v7i4.18891" target="_blank"
+                            class="cssbuttons-io-button">
+                            View Reference
+                            <div class="icon">
+                                <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M0 0h24v24H0z" fill="none"></path>
+                                    <path
+                                        d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
+                                        fill="currentColor"></path>
+                                </svg>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div
+                    class="flex flex-col justify-between h-full p-6 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-100">
+                    <div>
+                        <h5 class="mb-2 text-left text-justify text-2xl font-bold tracking-tight text-gray-900">
+                             Some properties of dominant local metric dimension. 
+                        </h5>
+                        <p class="font-normal text-left text-justify text-gray-700">
+                             Some properties of dominant local metric dimension. 
+                        </p>
+                    </div>
+                    <div class="flex items-center justify-center mt-4">
+                        <a href="https://doi.org/10.19139/soic-2310-5070-2062" target="_blank"
+                            class="cssbuttons-io-button">
+                            View Reference
+                            <div class="icon">
+                                <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M0 0h24v24H0z" fill="none"></path>
+                                    <path
+                                        d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
+                                        fill="currentColor"></path>
+                                </svg>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div
+                    class="flex flex-col justify-between h-full p-6 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-100">
+                    <div>
+                        <h5 class="mb-2 text-left text-justify text-2xl font-bold tracking-tight text-gray-900">
+                           Resolvability in graphs and the metruc dimension of a graph. 
+                        </h5>
+                        <p class="font-normal text-left text-justify text-gray-700">
+                           Chartrand, G., Eroh, L., Johnson, M. A., & Oellermann, O. R (2000). 
+                        </p>
+                    </div>
+                    <div class="flex items-center justify-center mt-4">
+                        <a href="https://doi.org/10.1016/s0166-218x(00)00198-0" target="_blank"
+                            class="cssbuttons-io-button">
+                            View Reference
+                            <div class="icon">
+                                <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M0 0h24v24H0z" fill="none"></path>
+                                    <path
+                                        d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
+                                        fill="currentColor"></path>
+                                </svg>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div
+                    class="flex flex-col justify-between h-full p-6 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-100">
+                    <div>
+                        <h5 class="mb-2 text-left text-justify text-2xl font-bold tracking-tight text-gray-900">
+                           Resolving domination in graphs. 
+                        </h5>
+                        <p class="font-normal text-left text-justify text-gray-700">
+                          Brigham, R. C., Chartrand, G., Dutton, R. D., & Zhang, P. (2003).
+                        </p>
+                    </div>
+                    <div class="flex items-center justify-center mt-4">
+                        <a href="https://books.google.co.id/books?id=4bwrAAAAYAAJ." target="_blank"
+                            class="cssbuttons-io-button">
+                            View Reference
+                            <div class="icon">
+                                <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M0 0h24v24H0z" fill="none"></path>
+                                    <path
+                                        d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
+                                        fill="currentColor"></path>
+                                </svg>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div
+                    class="flex flex-col justify-between h-full p-6 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-100">
+                    <div>
+                        <h5 class="mb-2 text-left text-justify text-2xl font-bold tracking-tight text-gray-900">
+                            Teori graf dan aplikasinya (Edisi kedua). 
+                        </h5>
+                        <p class="font-normal text-left text-justify text-gray-700">
+                           Slamin. (2023). 
+                        </p>
+                    </div>
+                    <div class="flex items-center justify-center mt-4">
+                        <a href="https://www.academia.edu/95939687/Teori_Graf_dan_Aplikasinya_Edisi_Kedua_Copyright_Slamin_216_halaman_16_x_23_cm_Hak_cipta_ada_pada_penulis" target="_blank"
+                            class="cssbuttons-io-button">
+                            View Reference
+                            <div class="icon">
+                                <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M0 0h24v24H0z" fill="none"></path>
+                                    <path
+                                        d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
+                                        fill="currentColor"></path>
+                                </svg>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div
+                    class="flex flex-col justify-between h-full p-6 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-100">
+                    <div>
+                        <h5 class="mb-2 text-left text-justify text-2xl font-bold tracking-tight text-gray-900">
+                            Bahan ajar matematika diskret (graf).  
+                        </h5>
+                        <p class="font-normal text-left text-justify text-gray-700">
+                            Apriyani, D. C. N. (2024).
+                        </p>
+                    </div>
+                    <div class="flex items-center justify-center mt-4">
+                        <a href="https://lppm.stkippacitan.ac.id/wp-content/uploads/2024/10/BUKU-MATDIS-2024.pdf" target="_blank"
+                            class="cssbuttons-io-button">
+                            View Reference
+                            <div class="icon">
+                                <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M0 0h24v24H0z" fill="none"></path>
+                                    <path
+                                        d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
+                                        fill="currentColor"></path>
+                                </svg>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div
+                    class="flex flex-col justify-between h-full p-6 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-100">
+                    <div>
+                        <h5 class="mb-2 text-left text-justify text-2xl font-bold tracking-tight text-gray-900">
+                           Teori graph dan penerapannya
+                        </h5>
+                        <p class="font-normal text-left text-justify text-gray-700">
+                            Rahayuningsih, S. (2018). 
+                        </p>
+                    </div>
+                    <div class="flex items-center justify-center mt-4">
+                        <a href="https://srirahayuningsih82.wordpress.com/wp-content/uploads/2019/02/buku-ajar-teori-graph.pdf" target="_blank"
+                            class="cssbuttons-io-button">
+                            View Reference
+                            <div class="icon">
+                                <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M0 0h24v24H0z" fill="none"></path>
+                                    <path
+                                        d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
+                                        fill="currentColor"></path>
+                                </svg>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div
+                    class="flex flex-col justify-between h-full p-6 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-100">
+                    <div>
+                        <h5 class="mb-2 text-left text-justify text-2xl font-bold tracking-tight text-gray-900">
+                           Aplikasi Pewarnaan Graf pada Penjadwalan UAS Program Studi Pendidikan Matematika Unugiri menggunakan Algoritma Welch-Powell.
+                        </h5>
+                        <p class="font-normal text-left text-justify text-gray-700">
+                            Sa’adah, T. N., Fathoni, M. I. A., & Sari, A. C. (2022). 
+                        </p>
+                    </div>
+                    <div class="flex items-center justify-center mt-4">
+                        <a href="https://doi.org/10.30605/proximal.v6i1.2139" target="_blank"
+                            class="cssbuttons-io-button">
+                            View Reference
+                            <div class="icon">
+                                <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M0 0h24v24H0z" fill="none"></path>
+                                    <path
+                                        d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
+                                        fill="currentColor"></path>
+                                </svg>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+    </section>
+
+    <footer class="bg-white">
+        <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
+            <hr class="my-6 border-gray-200 sm:mx-auto lg:my-8" />
+            <div class="items-center">
+                <p class="text-sm text-gray-500 text-center">2025 Create by Aurelia.</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</body>
+
+</html>

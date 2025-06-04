@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Graph Result</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.css" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <style>
+    /* Pastikan kontainer tidak terlalu lebar dan ada padding */
+    .container {
+      max-width: 768px;
+      /* batas maksimum */
+      margin: 0 auto;
+      padding: 1rem;
+    }
+
+    /* Grafik plotly agar lebar 100% dan tinggi minimal 400px */
+    #plotly-graph {
+      width: 100% !important;
+      min-height: 400px;
+      height: auto;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-100 min-h-screen p-6">
+  <div class="container bg-white p-8 rounded-lg shadow-md">
+
+    <a href="/perhitungan-graf-lintasan"
+      class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded transition duration-200">
+      Kembali
+    </a>
+    <h2 class="text-2xl pt-4 font-semibold mb-4">Hasil untuk Graf Lintasan</h2>
+
+
+    <h3 class="text-xl font-semibold mb-4">Visualisasi Graf:</h3>
+    <div id="plotly-graph"></div>
+
+    <p class="mb-4"><strong>Basis Lokal Dominasi W<sub>l</sub>:</strong> {{ Wl }}</p>
+
+
+    <h3 class="text-xl font-semibold mb-2">Jarak ke W<sub>l</sub>:</h3>
+    <ul class="list-disc list-inside mb-6">
+      {% for label, dist in distances_info.items %}
+      <li>{{ label }} = {{ dist }}</li>
+      {% endfor %}
+    </ul>
+
+  </div>
+
+  <script>
+    const plotlyJsonString = "{{ plotly_data|escapejs }}";
+    const plotlyData = JSON.parse(plotlyJsonString);
+    Plotly.newPlot('plotly-graph', plotlyData.data, plotlyData.layout, { responsive: true });
+  </script>
+
+</body>
+
+</html>

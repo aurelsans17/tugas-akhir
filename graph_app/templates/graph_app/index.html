@@ -1,0 +1,544 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Teori Graf & Penerapannya</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Catamaran:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<style>
+    .nav-link {
+        position: relative;
+        overflow: hidden;
+        padding-bottom: 10px;
+        color: #ffffff;
+        /* agar teks putih juga jika dibutuhkan */
+        transition: color 0.3s ease-in-out;
+    }
+
+    .nav-link::before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        bottom: 0;
+        left: -100%;
+        background-color: white;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .nav-link:hover {
+        color: white;
+    }
+
+    .nav-link:hover::before {
+        left: 0;
+    }
+
+
+    @media (max-width: 639px) {
+        .hide-on-mobile {
+            display: none;
+        }
+    }
+
+    .cormorant-garamond {
+        font-family: "Cormorant Garamond", serif;
+        font-optical-sizing: auto;
+        font-weight: 400;
+        font-style: normal;
+    }
+
+    .proza-libre {
+        font-family: "Proza Libre", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 400;
+        font-style: normal;
+    }
+
+    .montserrat {
+        font-family: "Montserrat", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 900;
+        font-style: normal;
+    }
+
+    .card {
+        width: full;
+        height: 10rem;
+        background: #bfdbfe;
+        transition: all 0.4s;
+        border-radius: 10px;
+        font-weight: 900;
+    }
+
+    .card:hover {
+        border-radius: 15px;
+        cursor: pointer;
+        transform: scale(1.2);
+        background: rgb(103, 151, 255);
+    }
+
+    .first-content {
+        height: 100%;
+        width: 100%;
+        transition: all 0.4s;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 1;
+        border-radius: 15px;
+    }
+
+    .card:hover .first-content {
+        height: 0px;
+        opacity: 0;
+    }
+
+    .second-content {
+        height: 0%;
+        width: 100%;
+        opacity: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 15px;
+        transition: all 0.4s;
+        transform: rotate(90deg) scale(-1);
+    }
+
+    .card:hover .second-content {
+        opacity: 1;
+        height: 100%;
+        font-size: 0.75rem;
+        transform: rotate(0deg);
+    }
+</style>
+
+<body class="min-h-screen">
+
+    <nav class="bg-blue-200 fixed w-full z-20 top-0 start-0 border-b border-gray-200">
+        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+            <a class="flex space-x-3 lg:text-blue-200 text-gray-900 font-semibold rtl:space-x-reverse">Teori Graf &
+                Penerapannya</a>
+
+            <div class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+                <button class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg
+                    md:hidden hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-200" type="button"
+                    data-drawer-target="drawer-body-scrolling" data-drawer-show="drawer-body-scrolling"
+                    data-drawer-backdrop="true" aria-controls="drawer-body-scrolling">
+                    <span class="sr-only">Open main menu</span>
+                    <svg class="text-black w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 17 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M1 1h15M1 7h15M1 13h15" />
+                    </svg>
+                </button>
+            </div>
+
+            <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
+                <ul
+                    class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0">
+                    <li class="items-center">
+                        <a href="/" class="block px-3 lg:text-center text-white font-semibold"
+                            aria-current="page">Beranda</a>
+                        <div class="border-t-4 px-8 mt-2" style="border-color: rgb(255, 255, 255);"></div>
+                    </li>
+                    <li>
+                        <a href="/contoh-penerapan/" class="nav-link block px-3 text-gray-700">Penerapan</a>
+                    </li>
+                    <li>
+                        <a href="/perhitungan-graf-lintasan/" class="nav-link block px-3 text-gray-700">Perhitungan</a>
+                    </li>
+                    <li>
+                        <a href="/sumber-referensi/" class="nav-link block px-3 text-gray-700">Referensi</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div id="drawer-body-scrolling"
+        class="fixed top-0 left-0 z-40 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-white w-80"
+        tabindex="-1" aria-labelledby="drawer-body-scrolling-label">
+        <h5 id="drawer-body-scrolling-label" class="text-base font-semibold text-gray-500 uppercase">
+            Menu</h5>
+        <button type="button" data-drawer-hide="drawer-body-scrolling" aria-controls="drawer-body-scrolling" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 absolute top-2.5 end-2.5 
+                    inline-flex items-center justify-center">
+            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+            </svg>
+            <span class="sr-only">Close menu</span>
+        </button>
+        <div class="py-4 overflow-y-auto">
+            <ul class="space-y-2 font-medium">
+                <li>
+                    <a href="/" type="button"
+                        class="flex items-center w-full p-2 text-base text-gray-900 font-bold rounded-lg group bg-gray-100">
+                        <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Beranda</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/contoh-penerapan/" type="button" class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group 
+                            hover:bg-gray-100">
+                        <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Penerapan</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/perhitungan-graf-lintasan/" type="button" class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group 
+                            hover:bg-gray-100">
+                        <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Perhitungan</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/sumber-referensi/" type="button" class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group 
+                            hover:bg-gray-100">
+                        <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Referensi</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <section class="bg-white bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/hero-pattern.svg')]">
+        <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 z-10 relative">
+            <a class="inline-flex justify-between items-center py-1 px-1 pe-4 mb-7">
+            </a>
+            <div class="lg:flex flex-1">
+                <div class="lg:px-8 py-4">
+                    <h1 class="hide-on-mobile mb-4 text-left text-4xl text-justify font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl"
+                        data-aos="fade-down-right">
+                        Teori Graf & Penerapannya</h1>
+                    <p class="lg:mb-8 text-left text-lg text-sm text-justify text-gray-500" data-aos="fade-up-right">
+                        Pada website ini akan dijelaskan tentang Teori Graf dan Penerapannya pada kehidupan
+                        sehari-hari.
+                    </p>
+                    <div data-aos="fade-down-right" class="border-t-4 w-0 lg:w-24" style="border-color: #bfdbfe;"></div>
+                </div>
+                <div data-aos="fade-left">
+                    <div class="mx-auto border-t-4 w-16 mt-8" style="border-color: #bfdbfe;"></div>
+                    <p
+                        class="cormorant-garamond mb-8 mt-4 lg:mt-8 font-normal text-center text-gray-900 lg:text-xl lg:px-16">
+                        Teori graf adalah konsep matematika yang digunakan untuk menyelesaikan berbagai permasalahan
+                        secara
+                        efektif. Teori graf pertama kali diperkenalkan oleh Leonhard Euler pada tahun 1736 melalui
+                        karyanya
+                        yang membahas solusi dari permasalahan Jembatan Königsberg, yang terkenal di Eropa.
+                    </p>
+                    <div class="mx-auto border-t-4 w-16" style="border-color: #bfdbfe;"></div>
+                </div>
+            </div>
+        </div>
+        <div class="bg-gradient-to-b from-blue-50 to-transparent w-full h-full absolute top-0 left-0 z-0"></div>
+    </section>
+
+    <div class="bg-white">
+
+        <div class="lg:px-60 px-4 mx-auto max-w-screen-xl text-left text-justify lg:text-center relative">
+            <img src="{% static '/img/grafg.PNG' %}" alt="Graf" class="w-40 mx-auto mt-6 mb-4" data-aos="zoom-in-up">
+            <p class="mt-4 mb-4 text-gray-800 cormorant-garamond">Ditunjukkan pada gambar 1 terdapat graf G sederhana
+                yang himpunan simpulnya \( V(G) \) adalah \( {u, v, w, z}, \) dan himpunan sisinya \( E(G) \) terdiri
+                dari sisi-sisi
+                \( uv, uw, vw \) dan \( wz. \)
+                Istilah dan simbol tersebut merupakan definisi-definisi yang digunakan untuk graf.
+            </p>
+        </div>
+
+        <div class="px-4">
+            <h2 class="mt-4 lg:mt-8 font-bold text-4xl text-blue-600 mb-4 lg:mb-8 text-left text-justify lg:text-center"
+                data-aos="zoom-in">
+                Dimensi Metrik
+        </div>
+
+        <div class="cormorant-garamond">
+
+            <div class="w-full lg:grid lg:grid-cols-2 gap-4 items-start px-4 lg:px-12 gap-8">
+                <div>
+                    <p class="mb-4 font-normal text-justify text-gray-900 lg:text-xl lg:px-0"
+                        data-aos="fade-down-right">
+                        Konsep dimensi metrik pertama kali diperkenalkan oleh Harary dan Melter pada tahun 1966.
+                        Himpunan simpul \( W \) dalam graf \( G \) disebut sebagai himpunan pembeda (<i>resolving
+                            set</i>) apabila setiap simpul
+                        dapat dibedakan berdasarkan jaraknya ke simpul-simpul dalam \( W \), sedangkan dimensi metrik
+                        dari graf \( G \) adalah
+                        jumlah paling sedikit simpul dalam himpunan tersebut.
+                    </p>
+                </div>
+
+                <div class="hidden lg:block lg:px-12 card">
+                    <div
+                        class="first-content cormorant-garamond font-normal text-justify text-gray-700 lg:text-xl lg:px-0">
+                        <span><b>Definisi</b> (Chartranda et al., 2000)</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="ml-6 size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="m12.75 15 3-3m0 0-3-3m3 3h-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                        </svg>
+                    </div>
+                    <div
+                        class="cormorant-garamond mb-4 font-xs text-justify text-white lg:text-xl lg:px-0 second-content">
+                        <span>Setiap simpul <i>v</i> dalam Graf <i>G</i> direpresentasikan dengan sebuah vektor jarak
+                            yang menunjukkan jarak simpul tersebut ke setiap simpul dalam <i>W</i> yaitu:
+                            \[
+                            r(v \mid W) = (d(v, w_1), d(v, w_2), \ldots, d(v, w_k))
+                            \]</span>
+                    </div>
+                </div>
+
+                <div class="md:hidden">
+                    <p class="font-normal text-justify text-gray-900 lg:text-xl lg:px-0" data-aos="fade-down-right">
+                        <b>Definisi</b> (Chartranda et al., 2000)
+                    </p>
+                    <p class="mb-4 font-normal text-justify text-gray-900 lg:text-xl lg:px-0"
+                        data-aos="fade-down-right">
+                        Setiap simpul <i>v</i> dalam Graf <i>G</i> direpresentasikan dengan sebuah vektor jarak
+                        yang menunjukkan jarak simpul tersebut ke setiap simpul dalam <i>W</i> yaitu:
+                        \[
+                        r(v \mid W) = (d(v, w_1), d(v, w_2), \ldots, d(v, w_k))
+                        \]
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="lg:px-12 px-4 mt-4 lg:mt-8">
+
+            <div class="mb-4 border-b border-blue-200" data-aos="zoom-in">
+                <ul class="flex flex-wrap -mb-px text-xs lg:text-lg lg:font-bold text-center" id="default-tab"
+                    data-tabs-toggle="#default-tab-content" role="tablist">
+                    <li class="me-2" role="presentation">
+                        <button class="inline-block p-4 border-b-2 rounded-t-lg" id="profile-tab"
+                            data-tabs-target="#profile" type="button" role="tab" aria-controls="profile"
+                            aria-selected="false">Dimensi Metrik Lokal</button>
+                    </li>
+                    <li class="me-2" role="presentation">
+                        <button
+                            class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300"
+                            id="dashboard-tab" data-tabs-target="#dashboard" type="button" role="tab"
+                            aria-controls="dashboard" aria-selected="false">Dimensi Metrik Dominasi</button>
+                    </li>
+                </ul>
+            </div>
+
+            <div data-aos="zoom-in" id="default-tab-content">
+                <div class="hidden p-4 mb-4 text-justify rounded-lg bg-blue-200" id="profile" role="tabpanel"
+                    aria-labelledby="profile-tab">
+                    <p class="text-sm text-justify text-gray-900"><b>Definisi</b> (Slamin, 2023)</p>
+                    <p class="mb-2 text-gray-900">Himpunan \( W \) dikatakan sebagai himpunan metrik lokal apabila
+                        setiap pasangan
+                        simpul yang bertetangga memiliki representasi jarak yang berbeda terhadap \(W,\)
+                        maka \( r(u \mid W) \ne r(v \mid W), \) dan dimensi metrik lokal dari
+                        graf \( G \) dinotasikan dengan \( \text{dim}_{l}(G) \).
+                    </p>
+                    <p class="text-sm text-justify text-gray-900"><b>Teorema</b> (Slamin, 2023)</p>
+                    <p class="text-gray-900">Jika \( \text{dim}_{l}(G) = n-1 \) jika dan hanya jika \( G \) adalah graf
+                        Lengkap \( \text{K}_{n} \),
+                        dan \( \text{dim}_{l}(G)=1 \) jika dan hanya jika \( G \) adalah garf dua partisi \(
+                        \text{K}_{m,n} \).
+                    </p>
+                </div>
+                <div class="hidden p-4 mb-4 text-justify rounded-lg bg-blue-200" id="dashboard" role="tabpanel"
+                    aria-labelledby="dashboard-tab">
+                    <p class="text-sm text-justify text-gray-900"><b>Definisi</b> (Brigham et all., 2003)</p>
+                    <p class="text-gray-900 mb-2 ">Suatu himpuna \( S \) dikatakan sebagai himpunan pembeda dominasi
+                        (<i>dominating resolving set</i>)
+                        jika memiliki dua fungsi sekaligus yaitu sebagai himpunan pembeda (<i>resolving set</i>) dan
+                        himpunan dominasi (<i>dominating set</i>).
+                    </p>
+                    <p class="text-sm text-justify text-gray-900"><b>Definisi</b> (Slamin, 2023)</p>
+                    <p class="text-gray-900"> Suatu himpunan pembeda dominasi dengan
+                        jumlan kardinalitas minimum disebut basis dominasi. Banyaknya titik
+                        (vertex) dalam basis dominasi dari graf \( G \) disebut sebagai dimensi
+                        metrik dominasi yang dilambangkan sebagai \( Ddim(G). \)
+                    </p>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="px-4">
+            <h2 data-aos="zoom-in" data-aos-delay="200"
+                class="mt-6 lg:mt-12 font-bold text-xl lg:text-4xl text-blue-600 mb-2 lg:mb-8 text-left text-justify lg:text-center">
+                Dimensi Metrik Lokal Dominasi</h2>
+        </div>
+
+        <div data-aos="zoom-in" data-aos-delay="400" class="cormorant-garamond px-4 lg:px-12 mb-2">
+            <p class="text-justify">Teori dimensi metrik lokal dominasi merupakan pengembangan baru dalam teori graf
+                yang
+                mengombinasikan dua
+                konsep sebelumnya, yaitu dimensi metrik lokal dan himpunan dominasi (<i>dominating set</i>).
+                Dengan menggabungkan kedua konsep ini, dimensi metrik lokal dominasi tidak hanya memastikan setiap titik
+                dapat
+                direpresentasikan secara berbeda berdasarkan jaraknya terhadap himpunan tertentu, tetapi juga menjamin
+                bahwa
+                himpunan tersebut mendominasi seluruh graf. </p>
+        </div>
+
+        <div class="lg:grid lg:grid-cols-3 gap-4 px-4 lg:px-12 mb-10">
+
+            <div data-aos="zoom-in" data-aos-delay="800" class="hidden lg:block text-justify mb-2 mt-4">
+                <div class="relative overflow-hidden w-full max-w-md h-80 rounded-3xl cursor-pointer text-2xl bg-white">
+                    <div class="z-10 absolute w-full h-full peer"></div>
+                    <div
+                        class="absolute peer-hover:-top-20 peer-hover:-left-16 peer-hover:w-[140%] peer-hover:h-[140%] -top-32 -left-16 w-32 h-44 rounded-full bg-blue-500 transition-all duration-500">
+                    </div>
+                    <div
+                        class="absolute flex text-xl text-left items-end justify-end peer-hover:right-0 peer-hover:rounded-b-none peer-hover:bottom-0 peer-hover:items-center peer-hover:justify-center 
+                peer-hover:w-full peer-hover:h-full -bottom-32 -right-16 w-36 h-44 rounded-full bg-blue-300 transition-all duration-500">
+                        <p class="text-sm px-12 text-justify text-white">Untuk graf terhubung \( G \), suatu himpunan
+                            terurut
+                            \( \ W_{l} = \{ w_1, w_2, \ldots, w_n \} \subseteq V(G)\) disebut himpunan pembeda lokal
+                            dominasi
+                            jika memenuhi dua syarat, yaitu himpunan pembeda lokal sekaligus himpunan dominasi dalam
+                            graf \(
+                            G \).</p>
+                    </div>
+
+                    <div class="w-full h-full items-center flex justify-center">
+                        <div class="flex flex-col">
+                            <p class="text-sm px-8"><b>Definisi 1</b></p>
+                            <p class="text-sm px-8">(Umilasari et al., 2021)</p>
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="ml-6 mt-2 size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="m12.75 15 3-3m0 0-3-3m3 3h-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div data-aos="zoom-in" data-aos-delay="1200" class="hidden lg:block text-justify mb-2 mt-4">
+                <div
+                    class="relative overflow-hidden w-full max-w-md h-80 rounded-3xl cursor-pointer text-2xl bg-blue-100">
+                    <div class="z-10 absolute w-full h-full peer"></div>
+                    <div
+                        class="absolute peer-hover:-top-20 peer-hover:-left-16 peer-hover:w-[140%] peer-hover:h-[140%] -top-32 -left-16 w-32 h-44 rounded-full bg-blue-500 transition-all duration-500">
+                    </div>
+                    <div
+                        class="absolute flex text-xl text-left items-end justify-end peer-hover:right-0 peer-hover:rounded-b-none peer-hover:bottom-0 peer-hover:items-center peer-hover:justify-center 
+                    peer-hover:w-full peer-hover:h-full -bottom-32 -right-16 w-36 h-44 rounded-full bg-blue-300 transition-all duration-500">
+                        <p class="text-sm px-12 text-justify text-white">\( \text{Ddim}_{l}(G)=1 \) jika dan hanya jika
+                            \( \
+                            G ≡
+                            {S}_{n}, n ≥ 3. \)</p>
+                    </div>
+
+                    <div class="w-full h-full items-center flex justify-center">
+                        <div class="flex flex-col">
+                            <p class="text-sm px-8"><b>Teorema</b></p>
+                            <p class="text-sm px-8">(Umilasari et al., 2024)</p>
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="ml-6 mt-2 size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="m12.75 15 3-3m0 0-3-3m3 3h-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div data-aos="zoom-in" data-aos-delay="1000" class="hidden lg:block text-justify mb-2 mt-4">
+                <div class="relative overflow-hidden w-full max-w-md h-80 rounded-3xl cursor-pointer text-2xl bg-white">
+                    <div class="z-10 absolute w-full h-full peer"></div>
+                    <div
+                        class="absolute peer-hover:-top-20 peer-hover:-left-16 peer-hover:w-[140%] peer-hover:h-[140%] -top-32 -left-16 w-32 h-44 rounded-full bg-blue-500 transition-all duration-500">
+                    </div>
+                    <div
+                        class="absolute flex text-xl text-left items-end justify-end peer-hover:right-0 peer-hover:rounded-b-none peer-hover:bottom-0 peer-hover:items-center peer-hover:justify-center 
+                    peer-hover:w-full peer-hover:h-full -bottom-32 -right-16 w-36 h-44 rounded-full bg-blue-300 transition-all duration-500">
+                        <p class="text-xs px-12 text-white text-justify">Jika himpunan tersebut memiliki jumlah
+                            kardinalitas
+                            paling sedikit,
+                            maka disebut basis lokal dominasi. Banyaknya elemen dalam basis lokal dominasi disebut
+                            dimensi
+                            metrik
+                            lokal dominasi dari graf \( G \), yang dinotasikan sebagai \( \text{Ddim}_{l}(G) \).</p>
+                    </div>
+                    <div class="w-full h-full items-center flex justify-center">
+                        <div class="flex flex-col">
+                            <p class="text-sm px-8"><b>Definisi 1</b></p>
+                            <p class="text-sm px-8">(Umilasari et al., 2021)</p>
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="ml-6 mt-2 size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="m12.75 15 3-3m0 0-3-3m3 3h-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="md:hidden cormorant-garamond mb-8 mt-4 relative w-ful h-full bg-blue-100 border border-gray-200 rounded-lg">
+                <p class="mt-6 text-sm px-4"><b>Definisi 1</b> (Umilasari et al., 2021).</p>
+                <p class="mb-6 px-4 font-normal text-justify">Untuk graf terhubung \( G \), suatu himpunan
+                    terurut
+                    \( \ W_{l} = \{ w_1, w_2, \ldots, w_n \} \subseteq V(G)\) disebut himpunan pembeda lokal
+                    dominasi
+                    jika memenuhi dua syarat, yaitu himpunan pembeda lokal sekaligus himpunan dominasi dalam
+                    graf \(
+                    G \).</p>
+                <span class="bg-blue-100 text-xs font-medium text-blue-800 text-center p-0.5 leading-none
+                    rounded-full w-28 h-6 absolute -translate-y-1/2 translate-x-1/2 right-1/2"></span>
+            </div>
+
+            <div class="md:hidden cormorant-garamond mb-8 mt-4 relative w-ful h-full bg-blue-100 border border-gray-200 rounded-lg">
+                <p class="mt-6 text-sm px-4"><b>Teorema</b> (Umilasari et al., 2024).</p>
+                <p class="mb-6 px-4 font-normal text-justify">\( \text{Ddim}_{l}(G)=1 \) jika dan hanya jika
+                    \( \
+                    G ≡
+                    {S}_{n}, n ≥ 3. \)</p>
+                <span class="bg-blue-100 text-xs font-medium text-blue-800 text-center p-0.5 leading-none
+                    rounded-full w-28 h-6 absolute -translate-y-1/2 translate-x-1/2 right-1/2"></span>
+            </div>
+
+            <div class="md:hidden cormorant-garamond mb-8 mt-4 relative w-ful h-full bg-blue-100 border border-gray-200 rounded-lg">
+                <p class="mt-6 text-sm px-4"><b>Definisi 2</b> (Umilasari et al., 2021).</p>
+                <p class="mb-6 px-4 font-normal text-justify">Jika himpunan tersebut memiliki jumlah
+                            kardinalitas
+                            paling sedikit,
+                            maka disebut basis lokal dominasi. Banyaknya elemen dalam basis lokal dominasi disebut
+                            dimensi
+                            metrik
+                            lokal dominasi dari graf \( G \), yang dinotasikan sebagai \( \text{Ddim}_{l}(G) \).</p>
+                <span class="bg-blue-100 text-xs font-medium text-blue-800 text-center p-0.5 leading-none
+                    rounded-full w-28 h-6 absolute -translate-y-1/2 translate-x-1/2 right-1/2"></span>
+            </div>
+
+
+        </div>
+    </div>
+
+    <footer class="bg-white">
+        <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
+            <hr class="my-6 border-gray-200 sm:mx-auto lg:my-8" />
+            <div class="items-center">
+                <p class="text-sm text-gray-500 text-center">2025 Create by Aurelia.</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</body>
+
+</html>
