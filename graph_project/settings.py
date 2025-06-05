@@ -15,7 +15,7 @@ ALLOWED_HOSTS = ['*']  # atau ['your-railway-subdomain.up.railway.app'] untuk le
 
 # ✅ Tambahkan CSRF trusted origins untuk menghindari 403 error di production
 CSRF_TRUSTED_ORIGINS = [
-    'https://web-production-15fb.up.railway.app',
+    'https://aplikasi-teori-graf.up.railway.app/',
 ]
 
 # Application definition
