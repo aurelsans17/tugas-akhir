@@ -13,6 +13,11 @@ DEBUG = False  # ⬅️ DISARANKAN matikan DEBUG di production (Railway)
 
 ALLOWED_HOSTS = ['*']  # atau ['your-railway-subdomain.up.railway.app'] untuk lebih aman
 
+# ✅ Tambahkan CSRF trusted origins untuk menghindari 403 error di production
+CSRF_TRUSTED_ORIGINS = [
+    'https://web-production-15fb.up.railway.app',
+]
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -21,6 +26,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
     'graph_app',
 ]
