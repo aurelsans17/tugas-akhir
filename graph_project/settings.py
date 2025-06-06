@@ -15,7 +15,7 @@ ALLOWED_HOSTS = ['*']  # atau ['your-railway-subdomain.up.railway.app'] untuk le
 
 # ✅ Tambahkan CSRF trusted origins untuk menghindari 403 error di production
 CSRF_TRUSTED_ORIGINS = [
-    'https://aplikasi-teori-graf.up.railway.app',
+    'https://aplikasi-teori-graf.online',
 ]
 
 # Application definition
@@ -96,9 +96,9 @@ STATICFILES_DIRS = [
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-# ✅ WhiteNoise storage
+# hiteNoise storage
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
-# ✅ Default auto field
+# Default auto field
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
