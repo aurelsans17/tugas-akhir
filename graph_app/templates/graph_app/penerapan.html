@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Teori Graf & Penerapannya</title>
+    <title>Penerapan Graf Lintasan</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.css" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -94,8 +94,7 @@
                 <ul
                     class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0">
                     <li class="items-center">
-                        <a href="/" class="nav-link block px-3 text-gray-700"
-                            aria-current="page">Beranda</a>
+                        <a href="/" class="nav-link block px-3 text-gray-700" aria-current="page">Beranda</a>
                     </li>
                     <li>
                         <a href="/contoh-penerapan/" class="block px-3 text-white font-semibold">Penerapan</a>
@@ -127,15 +126,15 @@
         <div class="py-4 overflow-y-auto">
             <ul class="space-y-2 font-medium">
                 <li>
-                    <a href="/" type="button"
-                        class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group 
+                    <a href="/" type="button" class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group 
                             hover:bg-gray-100">
                         <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Beranda</span>
                     </a>
                 </li>
 
                 <li>
-                    <a href="/contoh-penerapan/" type="button" class="flex items-center w-full p-2 text-base text-gray-900 font-bold rounded-lg group bg-gray-100">
+                    <a href="/contoh-penerapan/" type="button"
+                        class="flex items-center w-full p-2 text-base text-gray-900 font-bold rounded-lg group bg-gray-100">
                         <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Penerapan</span>
                     </a>
                 </li>
@@ -157,11 +156,177 @@
         </div>
     </div>
 
-    <section class="bg-white">
+    <section class="bg-white bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/hero-pattern.svg')]">
         <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 z-10 relative">
-            
+            <a class="inline-flex justify-between items-center py-1 px-1 pe-4 mb-7">
+            </a>
+            <div class="lg:px-12 lg:mr-6 py-4">
+                <h1 class=" mb-4 text-left text-4xl text-justify font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl"
+                    data-aos="fade-down-right">
+                    Penerapan Teori Graf</h1>
+                <p class="lg:mb-8 mb-10 text-left lg:mr-48 text-sm text-justify text-gray-500" data-aos="fade-up-right">
+                    Penerapan konsep dimensi metrik lokal dominasi pada graf lintasan dapat digunakan untuk menentukan
+                    titik-titik efisien dalam pemasangan kamera pengawas (CCTV) di gudang penyimpanan.
+                </p>
+                <div data-aos="fade-down-right" class="border-t-4 w-0 w-24" style="border-color: #bfdbfe;"></div>
+            </div>
         </div>
     </section>
+
+    <div class="lg:px-8 mx-auto max-w-screen-xl text-left text-justify lg:text-center relative">
+        <img src="{% static 'graph_app/img/ddiml.png' %}" alt="Graf Lintasan" class="w-96 mx-auto mt-6 mb-4"
+            data-aos="zoom-in-up">
+        <div class="lg:grid lg:grid-cols-2">
+            <p class="mt-4 px-4 text-left text-justify mb-4 text-gray-800 cormorant-garamond">Pada gambar diatas
+                himpunan
+                pembeda lokal dominasi
+                \( W_a \) = {\( v_3 \)} representasi jarak dari setiap titik dari graf G pada \( W_a \)
+                sama, yaitu \( r( { v_1 \mid W_a } ) = (1); \) \( r( { v_2 \mid W_a } ) = (1); \) \( r( { v_3 \mid
+                W_a }
+                ) = (0); \)
+                \( r( { v_4 \mid W_a } ) = (1); \) \( r( { v_5 \mid W_a } ) = (2); \) \( r( { v_6 \mid W_a } ) =
+                (1); \)
+                \( r( { v_7 \mid W_a } ) = (2); \) \( r( { v_8 \mid W_a } ) = (1); \) \( r( { v_9 \mid W_a } ) =
+                (1); \)
+                representasi titik tersebut adalah sama dan diperbolehkan, masih
+                masuk dalam salah satu kriteria, yaitu himpunan pembeda lokal, namun terdapat simpul yang tidak
+                terdominasi
+                secara langsung, yaitu \( v_5 \) dan \( v_7 \) tidak bertetangga dengan \( W_a \). Maka Gambar 2.6
+                (a)
+                bukan
+                merupakan dimensi metrik lokal dominasi karena tidak memenuhi kriteria himpunan pembeda lokal
+                dominasi.
+            </p>
+            <p class="mt-4 px-4 text-left text-justify mb-4 text-gray-800 cormorant-garamond">Lalu Gambar 2.6 (b) dari
+                graf G merupakan himpunan pembeda lokal dominasi karena simpul bertetangga yang memiliki representasi
+                beberda dan
+                \( v_5 \) dan \( v_7 \) sudah terdominasi dengan \( v_6 \) maka, \( W_b = \) \( (v_3, v_6) \) dengan
+                representasi jarak sebagai berikut
+                \( r( { v_1 \mid W_b } ) = (1,2); \) \( r( { v_2 \mid W_b } ) = (1,2); \) \( r( { v_3 \mid
+                W_b }
+                ) = (0,1); \)
+                \( r( { v_4 \mid W_b } ) = (1,1); \) \( r( { v_5 \mid W_b } ) = (2,1); \) \( r( { v_6 \mid W_b } ) =
+                (1,0); \)
+                \( r( { v_7 \mid W_b } ) = (2,1); \) \( r( { v_8 \mid W_b } ) = (1,1); \) \( r( { v_9 \mid W_b } ) =
+                (1,2); \) sehingga Gambar 2.6 (b) merupakan basis lokal dominasi \( Ddim_l (G) = 2\).
+        </div>
+    </div>
+
+    <div class="px-4">
+        <h2 data-aos="zoom-in" data-aos-delay="200"
+            class="mt-6 lg:mt-12 font-bold text-xl lg:text-4xl text-blue-600 mb-2 lg:mb-4 text-left text-justify lg:text-center">
+            Penerapan Dimensi Metrik Lokal Dominasi pada CCTV
+        </h2>
+    </div>
+
+    <div data-aos="zoom-in" data-aos-delay="400" class="cormorant-garamond px-4 lg:px-12 mb-4">
+        <p class="text-justify">Penerapan konsep dimensi metrik lokal dominasi pada graf lintasan dapat digunakan
+            untuk menentukan titik-titik efisien dalam pemasangan kamera pengawas (CCTV) di gudang penyimpanan.
+            Dalam konteks ini, setiap simpul mewakili sebuah rak penyimpanan yang disusun secara berurutan dan membentuk
+            struktur linier, mirip dengan graf lintasan \( P _n \). </p>
+        <img src="{% static 'graph_app/img/gudang.png' %}" alt="Gudang" class="w-96 mx-auto mt-4">
+        <a class="block text-center mx-auto mb-2" target="_blank" href="https://www.canva.com/p/syammasfitria/">Sumber
+            Gambar:
+            <u>@syammasfitria</u></a>
+        <p class="text-justify">Dapat dilihat pada Gambar 4.10 terdapat 1 lorong dan 1 rak penyimpanan, CCTV dapat
+            diletakkan pada 3 rak
+            penyimpanan
+            untuk menghemat biaya pemasangan CCTV. Sebagai contoh,
+            \(W_l = (v_2, v_5, v_7 )\) maka jarak antara rak penyimpanan yang tidak dipasang oleh CCTV dengan jarak yang
+            dipasang
+            CCTV adalah:</p>
+        <div class="block text-center mb-2 mt-2">
+            <p>\( r( { v_1 \mid W_l } ) = (1, 4, 6); \)</p>
+            <p>\( r( { v_2 \mid W_l } ) = (0, 3, 5); \)</p>
+            <p>\( r( { v_3 \mid W_l } ) = (1, 2, 4); \)</p>
+            <p>\( r( { v_4 \mid W_l } ) = (2, 1, 3); \)</p>
+            <p>\( r( { v_5 \mid W_l } ) = (3, 0, 2); \)</p>
+            <p>\( r( { v_6 \mid W_l } ) = (4, 1, 1); \)</p>
+            <p>\( r( { v_7 \mid W_l } ) = (5, 2, 0); \)</p>
+        </div>
+        <p class="text-justify">Penempatan CCTV untuk 1 lorong dengan 2 rak penyimpanan memiliki variasi pemasanggan
+            CCTV
+            yang berbeda yaitu bisa diletakkan di setiap rak atau diletakkan di lorong, dengan jumlah CCTV yang berbeda
+            dan jenis spesifikasi CCTV yang digunakan.</p>
+    </div>
+    <div data-aos="zoom-in" data-aos-delay="400" class="px-4 lg:px-12 mb-2">
+        <div class="lg:grid lg:grid-cols-2 gap-4">
+            <div
+                class="flex flex-col justify-between h-full lg:p-6 bg-white lg:border lg:border-gray-200 lg:rounded-lg lg:shadow-sm">
+                <div>
+                    <h2 data-aos="zoom-in" data-aos-delay="200"
+                        class="mt-2 font-bold text-xl lg:text-2xl text-blue-600 mb-2 lg:mb-4 text-left text-justify">
+                        Penempatan CCTV pada 2 rak 
+                    </h2>
+                    <img data-aos="zoom-in" data-aos-delay="200" src="{% static 'graph_app/img/1.jpg' %}" alt="Gudang" class="w-full mx-auto mt-2">
+                    <a data-aos="zoom-in" data-aos-delay="200" class="cormorant-garamond  block text-center mx-auto mb-2" target="_blank"
+                        href="https://www.hailanresin.com/news/storage-and-transportation-of-resin.html"><u>Sumber
+                            Gambar</u></a>
+                    <p data-aos="zoom-in" data-aos-delay="200" class="cormorant-garamond  font-normal text-left text-justify mt-2">
+                        Gambar 4.11 ditunjukkan ilustrasi penempatan CCTV pada satu lorong dengan dua sisi rak
+                        penyimpanan,
+                        yakni sisi kiri dan kanan. Pada konfigurasi ini, CCTV dipasang langsung pada masing-masing rak,
+                        yaitu
+                        dua kamera di rak kiri dan dua kamera di rak kanan, sehingga total jumlah kamera yang digunakan
+                        adalah empat unit.
+                        Setiap sisi rak direpresentasikan oleh graf lintasan dengan empat simpul, yaitu \((v_1, v_2,
+                        v_3, v_4)\).
+                        Berdasarkan perhitungan, dimensi metrik lokal dominasi dari masing-masing lintasan tersebut
+                        adalah \(Ddim_l(P_4)=2\) dengan basis lokal dominasinya adalah \((v_2, v_4)\). Artinya, dua
+                        titik dominasi
+                        cukup untuk menjangkau seluruh simpul pada setiap rak. CCTV yang digunakan dalam penempatan ini
+                        adalah jenis fixed bullet camera,
+                        karena pemasangan dilakukan pada dinding lorong, bukan pada plafon. Jenis kamera ini memiliki
+                        arah pandang tetap dan dirancang untuk pemantauan
+                        horizontal sepanjang lorong rak. Dilengkapi dengan fitur inframerah, kamera ini tetap efektif
+                        digunakan dalam kondisi pencahayaan rendah di area penyimpanan.
+                    </p>
+                    <div data-aos="zoom-in" data-aos-delay="200" class="cormorant-garamond block text-center mb-2 mt-2">
+                        <p>\( r( { v_1 \mid W_l } ) = (1, 3); \)</p>
+                        <p>\( r( { v_2 \mid W_l } ) = (0, 2); \)</p>
+                        <p>\( r( { v_3 \mid W_l } ) = (1, 1); \)</p>
+                        <p>\( r( { v_4 \mid W_l } ) = (2, 0); \)</p>
+                    </div>
+                </div>
+            </div>
+            <div
+                class="flex flex-col justify-between h-full lg:p-6 bg-white lg:border lg:border-gray-200 lg:rounded-lg lg:shadow-sm">
+                <div>
+                    <h2 data-aos="zoom-in" data-aos-delay="200"
+                        class="mt-2 font-bold text-xl lg:text-2xl text-blue-600 mb-2 lg:mb-4 text-left text-justify">
+                        Penempatan CCTV pada lorong 
+                    </h2>
+                    <img data-aos="zoom-in" data-aos-delay="200" src="{% static 'graph_app/img/2.jpg' %}" alt="Gudang" class="w-full mx-auto mt-2">
+                    <a data-aos="zoom-in" data-aos-delay="200" class="cormorant-garamond  block text-center mx-auto mb-2" target="_blank"
+                        href="https://www.hailanresin.com/news/storage-and-transportation-of-resin.html"><u>Sumber
+                            Gambar</u></a>
+                    <p data-aos="zoom-in" data-aos-delay="200" class="cormorant-garamond  font-normal text-left text-justify mt-2">
+                        Gambar diatas ditampilkan ilustrasi penempatan CCTV pada sebuah lorong penyimpanan. Berdasarkan
+                        struktur graf yang terbentuk dari
+                        lorong tersebut, yang terdiri atas simpul \((v_1, v_2,
+                        v_3, v_4)\), maka dimensi metrik lokal dominasi
+                        \((Ddim_l)\) bernilai 2. Dengan demikian, hanya diperlukan dua titik pengawasan untuk mencakup
+                        seluruh area secara efisien.
+                        Kamera ditempatkan pada simpul \(v_2, v_4\), yang mewakili himpunan basis lokal
+                        dominasi. Untuk mencakup dua arah pengawasan
+                        sekaligus dari masing-masing titik, jenis kamera yang digunakan berbeda dari sebelumnya, yaitu
+                        dengan menggunakan kamera dual-lens atau
+                        kamera fisheye, keduanya memungkinkan cakupan pandang ke depan dan belakang dari satu posisi
+                        pemasangan. Representasi jarak dari masing-masing
+                        simpul terhadap himpunan \(W_l = \) \(( v_2, v_4)\) adalah sebagai berikut:
+                    </p>
+                    <div data-aos="zoom-in" data-aos-delay="200" class="cormorant-garamond block text-center mb-2 mt-2">
+                        <p>\( r( { v_1 \mid W_l } ) = (1, 3); \)</p>
+                        <p>\( r( { v_2 \mid W_l } ) = (0, 2); \)</p>
+                        <p>\( r( { v_3 \mid W_l } ) = (1, 1); \)</p>
+                        <p>\( r( { v_4 \mid W_l } ) = (2, 0); \)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 
     <footer class="bg-white">
         <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
