@@ -35,6 +35,26 @@
     </a>
     <h2 class="text-2xl pt-4 font-semibold mb-4">Hasil untuk Graf Lintasan</h2>
 
+    <p class="text-justify mb-2">
+      Simpul-simpul pada graf ini mewakili titik-titik di lorong atau <a class="text-blue-600 hover:underline" href="https://aplikasi-teori-graf.online/static/graph_app/img/gudang.png" target="_blank">barisan rak penyimpanan</a> yang terdapat di 
+      <a class="text-blue-600 hover:underline" href="https://aplikasi-teori-graf.online/contoh-penerapan/" target="_blank">contoh penerapan</a>.
+      Titik-titik merah pada visualisasi menunjukkan lokasi strategis di mana CCTV dipasang.
+      Penempatan ini ditentukan berdasarkan teori graf agar semua area terjangkau dengan jumlah CCTV seminimal mungkin.
+    </p>
+
+    <div class="mt-4 mb-4 text-sm text-gray-700">
+      <p><strong>Keterangan:</strong></p>
+      <ul class="list-disc list-inside">
+        <div class="flex flex-wrap">
+          <li class="text-red-600"></li><span class="text-red-600 font-semibold">Titik Merah</span>: Titik lokasi CCTV
+          dipasang.
+        </div>
+         <div class="flex flex-wrap">
+          <li class="text-blue-600"></li><span class="text-blue-600 font-semibold">Titik Biru</span>: Titik yang diawasi oleh CCTV.
+        </div>
+        <li>Jarak ke W<sub>l</sub>: Validasi dimensi metrik lokal dominasi dengan menentukan jarak menggunakan BFS.</li>
+      </ul>
+    </div>
 
     <h3 class="text-xl font-semibold mb-4">Visualisasi Graf:</h3>
     <div id="plotly-graph"></div>

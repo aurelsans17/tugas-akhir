@@ -113,4 +113,3 @@ def graph_view(request):
         })
     
     return render(request, 'graph_app/graph_form.html')
-
